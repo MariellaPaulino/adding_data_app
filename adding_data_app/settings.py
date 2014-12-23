@@ -36,6 +36,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #PART 6.2 this part here is where you are going to add the apps in the project!!! This would be where within the Google app you tell the project, hey, big Google app, here are the little apps you are going to work on. Here is the calendar, and maps, and gmail, etc.  In the line below, we are going to add the app folder. 
+    'app'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -58,10 +60,19 @@ WSGI_APPLICATION = 'adding_data_app.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        #PART 6.3 you are also changing the stuff below because we are creating a new database for this parent app >> the BIG Google and we have to tell the children apps where they are supposed to go'
+
+        #Before you do this step, log into the http://127.0.0.1:8000/admin/ using your username and password... if you don't know your username and password... use the following site to reset >>http://stackoverflow.com/questions/6358030/how-to-reset-django-admin-password<< or google 'create new superuser django' and follow the prompt
+
+        #After you have finally logged into the django admin site, go in your local drive to the folder that has manage.py from your terminal and type $python manage.py syncdb  This is going to allow the DB to sync with what we have put in settings and in the models. 
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'adding_data_app',
+        'USER': 'postgres',
+        'PASSWORD': 'newpassword',
+        'HOST': 'localhost',
+        'PORT':'',
+        }
     }
-}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
